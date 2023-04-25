@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home</title>
+        <link rel = "stylesheet" href = "mystyle.css">
+    </head>
+    <body>
+        <section class = "menuSection">
+            <button class = menuButton buttonLink = "index.html">
+                Home
+            </button>
+            <button class = menuButton buttonLink = "Controls.html">
+                Controls
+            </button>
+            <button class = menuButton buttonLink = "TestPage.html">
+                Test
+            </button>
+            <button class = menuButton buttonLink = "Forum.html">
+                Forum
+            </button>
+            <button class = menuButton buttonLink = "index.html">
+                Page5
+            </button>
+            <button class = menuButton buttonLink = "index.html">
+                Page6
+            </button>
+            <br class = endfloat>
+            <hr>
+        </section>
+        <section>
+            <h1>
+                Home
+            </h1>
+            <p>
+                This is a basic homepage that links to various other pages on this device
+            </p>
+        </section>
+        <section class = dataSection>
+            <h3>
+                Comments
+            </h3>
+            <form id = dataForm>
+                <label>
+                    Name:
+                <input class = commentInput name = name>
+                <br>
+                    Comment:
+                <input class = commentInput name = comment>
+                <br>
+                <input class = commentInput type = "submit" value = "Submit">
+                </label>
+            </form>
+        </section>
+        <section class = dataSection>
+            <div id = dataHere>
+            </div>
+        </section>
+    </body>
+</html>
+<script>
+    httpGetAsync("/data", getCall);
+
+    var buttons = document.getElementsByTagName("button");
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener("click", switchCall, false);
+    }
+
+    var form = document.getElementById("dataForm")
+    form.addEventListener('submit', formCall);
+
+    function switchCall(evt) {
+        elem = evt.currentTarget;
+        elemClass = elem.getAttribute("class");
+        if (elemClass == "menuButton") {
+            window.location.href = elem.getAttribute("buttonLink");
+        }
+        else if (elemClass == "getButton") {
+            httpGetAsync("/data", getCall);
+        }
+    }
+
+    function formCall(evt) {
+        evt.preventDefault();
+        name = evt.currentTarget.elements["name"].value;
+        comment = evt.currentTarget.elements["comment"].value;
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/", true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send("name" + "=" + name + "&" + "comment" + "=" + comment);
+        evt.currentTarget.elements["name"].value = "";
+        evt.currentTarget.elements["comment"].value = "";
+        httpGetAsync("/data", getCall);
+    }
+
+    function httpGetAsync(theUrl, callback)
+    {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() { 
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                callback(xmlHttp.responseText);
+        }
+        xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+        xmlHttp.send(null);
+    }
+
+    function getCall(data) {
+        const dataArray = data.split("\n");
+        var p = document.getElementById("dataHere");
+        p.innerHTML = "";
+        for (var i = 0; i < dataArray.length - 1; i++) {
+            const commentArray = dataArray[i].split("\t", 3);
+            p.innerHTML += "<hr><p>" + commentArray[2] + "</p>" + "<h3>" + commentArray[0] + "</h5>" + "<p>" + commentArray[1] + "</p><hr>";
+        }
+    }
+</script>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Controls</title>
+        <link rel = "stylesheet" href = "mystyle.css">
+    </head>
+    <body>
+        <section class = "menuSection">
+            <button class = menuButton buttonLink = "index.html">
+                Home
+            </button>
+            <button class = menuButton buttonLink = "Controls.html">
+                Controls
+            </button>
+            <button class = menuButton buttonLink = "TestPage.html">
+                Test
+            </button>
+            <button class = menuButton buttonLink = "Forum.html">
+                Forum
+            </button>
+            <button class = menuButton buttonLink = "index.html">
+                Page5
+            </button>
+            <button class = menuButton buttonLink = "index.html">
+                Page6
+            </button>
+            <br class = endfloat>
+            <hr>
+        </section>
+        <section>
+            <h1>
+                Controls
+            </h1>
+            <p>
+                This page is a control system for various systems
+            </p>
+        </section>
+        <section class = dataSection>
+            <h3>
+                Data
+            </h3>
+            <form id = dataForm>
+                <label>
+                    Search:
+                <input name = data>
+                </label>
+            </form>
+        </section>
+        <section id = buttonSection class = buttonSection>
+            <h3>
+                Switches
+            </h3>
+            <button id = switch1 class = onSwitch>
+                On
+            </button>
+            <button id = switch2 class = onSwitch>
+                On
+            </button>
+            <br>
+            <button id = switch3 class = onSwitch>
+                On
+            </button>
+            <button id = switch4 class = onSwitch>
+                On
+            </button>
+        </section>
+    </body>
+</html>
+<script>
+
+    var buttons = document.getElementsByTagName("button");
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener("click", switchCall, false);
+    }
+
+    var form = document.getElementById("dataForm")
+    form.addEventListener('submit', formCall);
+    
+    function switchCall(evt) {
+        elem = evt.currentTarget;
+        elemClass = elem.getAttribute("class");
+        if (elemClass == "onSwitch") {
+            elem.innerHTML = "Off";
+            elem.setAttribute("class", "offSwitch");
+        }
+        else if (elemClass == "offSwitch") {
+            elem.innerHTML = "On";
+            elem.setAttribute("class", "onSwitch");
+        }
+        else if (elemClass == "menuButton") {
+            window.location.href = elem.getAttribute("buttonLink");
+        }
+    }
+
+    function formCall(evt) {
+        evt.preventDefault();
+        formData = evt.currentTarget.elements["data"].value;
+        if (formData == "Switches") {
+            document.getElementById("buttonSection").style.display = "block";
+        }
+        else if (formData == "Clear") {
+            document.getElementById("buttonSection").style.display = "none";
+        }
+        evt.currentTarget.elements["data"].value = "";
+    }
+</script>

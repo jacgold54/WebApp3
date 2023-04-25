@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Forum</title>
+        <link rel = "stylesheet" href = "mystyle.css">
+    </head>
+    <body>
+        <section class = "menuSection">
+            <button class = menuButton buttonLink = "index.html">
+                Home
+            </button>
+            <button class = menuButton buttonLink = "Controls.html">
+                Controls
+            </button>
+            <button class = menuButton buttonLink = "TestPage.html">
+                Test
+            </button>
+            <button class = menuButton buttonLink = "Forum.html">
+                Forum
+            </button>
+            <button class = menuButton buttonLink = "index.html">
+                Page5
+            </button>
+            <button class = menuButton buttonLink = "index.html">
+                Page6
+            </button>
+            <br class = endfloat>
+            <hr>
+        </section>
+        <section class = dataSection>
+            <h3>
+                Comments
+            </h3>
+            <form id = dataForm>
+                <label>
+                    Name:
+                <input class = commentInput name = name>
+                <br>
+                    Comment:
+                <input class = commentInput name = comment>
+                <br>
+                <input class = commentInput type = "submit" value = "Submit">
+                </label>
+            </form>
+        </section>
+    </body>
+</html>
+<script>
+    var buttons = document.getElementsByTagName("button");
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener("click", switchCall, false);
+    }
+
+    var form = document.getElementById("dataForm")
+    form.addEventListener('submit', formCall);
+
+    function switchCall(evt) {
+        elem = evt.currentTarget;
+        elemClass = elem.getAttribute("class");
+        if (elemClass == "menuButton") {
+            window.location.href = elem.getAttribute("buttonLink");
+        }
+    }
+
+    function formCall(evt) {
+        evt.preventDefault();
+        name = evt.currentTarget.elements["name"].value;
+        comment = evt.currentTarget.elements["comment"].value;
+        evt.currentTarget.innerHTML += "<hr><h3>" + name + "</h5>" + "<p>" + comment + "</p><hr>";
+        evt.currentTarget.elements["name"].value = "";
+        evt.currentTarget.elements["comment"].value = "";
+    }
+</script>

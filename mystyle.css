@@ -1,0 +1,68 @@
+body {
+    margin: 0px;
+    background-color: #808080
+}
+section {
+    margin: 0px;
+    padding: 10px;
+    padding-left: 20px;
+}
+hr {
+    height: 2px;
+    background-color: #000000;
+    border: none;
+    margin: 0px;
+    padding: 0px;
+}
+.menuButton {
+    margin: 0px;
+    height: 60px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-weight: bolder;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    float: left;
+}
+.menuSection {
+    margin: 0px;
+    padding: 0px;
+    background-color: #505050;
+}
+.endfloat {
+    clear: both; 
+    display: block; 
+    position: relative;
+}  
+.onSwitch {
+    background-color: #008015;
+    width: 100px;
+    height: 50px;
+    padding: 0px;
+    margin: 0px;
+    font-family: Times New Roman;
+    font-weight: bolder;
+    font-size: 14px;
+}
+.offSwitch {
+    background-color: #800000;
+    width: 100px;
+    height: 50px;
+    padding: 0px;
+    margin: 0px;
+    font-family: Times New Roman;
+    font-weight: bolder;
+    font-size: 14px;
+}
+.buttonSection {
+    display: none;
+    background-color: #707070;
+}
+.dataSection {
+    background-color: #5588ed;
+}
+.commentInput {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bolder;
+}
